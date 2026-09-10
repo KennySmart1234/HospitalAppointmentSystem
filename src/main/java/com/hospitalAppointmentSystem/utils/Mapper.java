@@ -1,11 +1,10 @@
 package com.hospitalAppointmentSystem.utils;
 
-import com.hospitalAppointmentSystem.data.models.Department;
-import com.hospitalAppointmentSystem.data.models.Patient;
-import com.hospitalAppointmentSystem.data.models.User;
-import com.hospitalAppointmentSystem.data.models.UserRole;
+import com.hospitalAppointmentSystem.data.models.*;
+import com.hospitalAppointmentSystem.dtos.requests.AdminRegistrationRequest;
 import com.hospitalAppointmentSystem.dtos.requests.DepartmentRegisterRequest;
 import com.hospitalAppointmentSystem.dtos.requests.PatientRegistrationRequest;
+import com.hospitalAppointmentSystem.dtos.responses.AdminRegistrationResponse;
 import com.hospitalAppointmentSystem.dtos.responses.DepartmentRegistrationResponse;
 import com.hospitalAppointmentSystem.dtos.responses.LoginResponse;
 import com.hospitalAppointmentSystem.dtos.responses.PatientRegistrationResponse;
@@ -43,6 +42,7 @@ public class Mapper {
         response.setMessage("Registration Successful ");
         response.setFullname(patient.getFullname());
         response.setEmail(patient.getEmail());
+        response.setRole(UserRole.PATIENT);
 
         return response;
     }
@@ -69,4 +69,30 @@ public class Mapper {
     }
 
 
+    public static Admin mapToAdmin(AdminRegistrationRequest request) {
+
+        Admin admin = new Admin();
+        admin.setFullname(request.getFullname());
+        admin.setEmail(request.getEmail());
+        admin.setPhone(request.getPhone());
+        admin.setPassword(request.getPassword());
+        admin.setDateOfBirth(request.getDateOfBirth());
+        admin.setGender(request.getGender());
+        admin.setAddress(request.getAddress());
+        admin.setRole(UserRole.ADMIN);
+
+        return admin;
+
+    }
+
+
+    public static AdminRegistrationResponse mapToAdminRegistrationResponse(Admin admin) {
+        AdminRegistrationResponse response = new AdminRegistrationResponse();
+        response.setMessage("Registration Successful");
+        response.setFullname(admin.getFullname());
+        response.setEmail(admin.getEmail());
+        response.setRole(UserRole.ADMIN);
+
+        return response;
+    }
 }

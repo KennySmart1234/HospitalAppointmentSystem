@@ -33,6 +33,10 @@ public class DepartmentServiceImpl implements DepartmentService {
             throw new HospitalAppException("Department name is required");
         }
 
+        if (departmentRepository.existsByName(request.getName())){
+            throw new HospitalAppException("Department Already exists");
+        }
+
         Department department = Mapper.mapToDepartment(request);
 
         department = departmentRepository.save(department);

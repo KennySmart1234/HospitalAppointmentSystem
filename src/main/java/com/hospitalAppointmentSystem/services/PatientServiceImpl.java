@@ -14,12 +14,13 @@ public class PatientServiceImpl implements PatientService {
     private final PatientRepository patientRepository;
 
     public PatientServiceImpl(PatientRepository patientRepository){
+
         this.patientRepository = patientRepository;
     }
 
     @Override
     public PatientRegistrationResponse registerPatient(PatientRegistrationRequest request) throws HospitalAppException {
-        Validator.validate(request);
+        Validator.validatePatient(request);
 
         if (patientRepository.existsByEmail(request.getEmail())) {
             throw new HospitalAppException("Email already exist");
