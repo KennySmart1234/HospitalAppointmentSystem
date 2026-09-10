@@ -1,8 +1,10 @@
 package com.hospitalAppointmentSystem.controllers;
 
 import com.hospitalAppointmentSystem.dtos.requests.LoginRequest;
+import com.hospitalAppointmentSystem.dtos.requests.LogoutRequest;
 import com.hospitalAppointmentSystem.dtos.responses.ApiResponse;
 import com.hospitalAppointmentSystem.dtos.responses.LoginResponse;
+import com.hospitalAppointmentSystem.dtos.responses.LogoutResponse;
 import com.hospitalAppointmentSystem.exceptions.HospitalAppException;
 import com.hospitalAppointmentSystem.services.AuthService;
 import lombok.AllArgsConstructor;
@@ -32,4 +34,20 @@ public class AuthController {
                     new ApiResponse(ex.getMessage(), false), BAD_REQUEST);
         }
     }
+
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestBody LogoutRequest request){
+        try{
+            LogoutResponse response = authService.logout(request);
+
+            return ResponseEntity.ok(
+                    new ApiResponse(response, true));
+        }catch (HospitalAppException ex){
+            return new ResponseEntity<>(
+                    new ApiResponse(ex.getMessage(), false), BAD_REQUEST);
+        }
+    }
+
+
 }

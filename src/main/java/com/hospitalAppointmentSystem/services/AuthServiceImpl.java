@@ -3,10 +3,13 @@ package com.hospitalAppointmentSystem.services;
 import com.hospitalAppointmentSystem.data.models.User;
 import com.hospitalAppointmentSystem.data.repositories.UserRepository;
 import com.hospitalAppointmentSystem.dtos.requests.LoginRequest;
+import com.hospitalAppointmentSystem.dtos.requests.LogoutRequest;
 import com.hospitalAppointmentSystem.dtos.responses.LoginResponse;
+import com.hospitalAppointmentSystem.dtos.responses.LogoutResponse;
 import com.hospitalAppointmentSystem.exceptions.HospitalAppException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.hospitalAppointmentSystem.utils.Mapper.mapToLoginResponse;
@@ -39,8 +42,33 @@ public class AuthServiceImpl implements AuthService {
         return mapToLoginResponse(user);
     }
 
+    @Override
+    public LogoutResponse logout(LogoutRequest request) throws HospitalAppException{
+
+        Optional<User> foundUser =
+                userRepository.findByEmail(request.getEmail());
+
+        if (foundUser.isEmpty()) {
+            throw new HospitalAppException("Email does not exist");
+        }
+
+        User user = foundUser.get();
+
+        if (!user.isLoggedIn()) {
+            throw new HospitalAppException("User is already logged out");
+        }
+
+        user.setLoggedIn(false);
+
+        userRepository.save(user);
+
+        LogoutResponse response = new LogoutResponse();
+        response.setMessage("Logout successful");
+        response.setLoggedOut(true);
+
+        return response;
 
 
-
+        }
 
 }

@@ -4,10 +4,7 @@ import com.hospitalAppointmentSystem.data.models.*;
 import com.hospitalAppointmentSystem.dtos.requests.AdminRegistrationRequest;
 import com.hospitalAppointmentSystem.dtos.requests.DepartmentRegisterRequest;
 import com.hospitalAppointmentSystem.dtos.requests.PatientRegistrationRequest;
-import com.hospitalAppointmentSystem.dtos.responses.AdminRegistrationResponse;
-import com.hospitalAppointmentSystem.dtos.responses.DepartmentRegistrationResponse;
-import com.hospitalAppointmentSystem.dtos.responses.LoginResponse;
-import com.hospitalAppointmentSystem.dtos.responses.PatientRegistrationResponse;
+import com.hospitalAppointmentSystem.dtos.responses.*;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
@@ -94,5 +91,18 @@ public class Mapper {
         response.setRole(UserRole.ADMIN);
 
         return response;
+    }
+
+    public static UserResponse mapToUserResponse(User user){
+        UserResponse response = new UserResponse();
+
+        response.setId(user.getId());
+        response.setFullname(user.getFullname());
+        response.setEmail(user.getEmail());
+        response.setPhone(user.getPhone());
+        response.setRole(user.getRole().name());
+
+        return response;
+
     }
 }

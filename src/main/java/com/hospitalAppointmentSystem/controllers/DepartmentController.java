@@ -22,25 +22,6 @@ public class DepartmentController {
 
     private DepartmentService departmentService;
 
-    @PostMapping("Create")
-    public ResponseEntity<?> createDepartment(
-            @RequestBody DepartmentRegisterRequest request){
-        try{
-            DepartmentRegistrationResponse response =
-                    departmentService.createDepartment(request);
-
-            return new ResponseEntity<>(
-                    new ApiResponse(response, true),
-                    HttpStatus.CREATED
-            );
-
-        }catch (HospitalAppException ex){
-            return new ResponseEntity<>(
-                    new ApiResponse(ex.getMessage(), false),
-                    BAD_REQUEST
-            );
-        }
-    }
 
     @GetMapping("View all Department")
     public ResponseEntity<?> getAllDepartments() {

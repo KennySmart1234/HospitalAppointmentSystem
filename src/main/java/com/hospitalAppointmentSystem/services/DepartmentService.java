@@ -8,7 +8,6 @@ import com.hospitalAppointmentSystem.exceptions.HospitalAppException;
 import java.util.List;
 
 public interface DepartmentService {
-    DepartmentRegistrationResponse createDepartment(DepartmentRegisterRequest request) throws HospitalAppException;
 
     List<Department> getAllDepartments();
 

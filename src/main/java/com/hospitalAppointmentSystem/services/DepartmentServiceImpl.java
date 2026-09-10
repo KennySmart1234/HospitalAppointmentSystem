@@ -20,29 +20,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     }
 
-    @Override
-    public DepartmentRegistrationResponse createDepartment(DepartmentRegisterRequest request)
-        throws HospitalAppException {
-
-        if (request == null){
-            throw new HospitalAppException("Department cannot be null");
-        }
-
-        if(request.getName() == null ||
-                request.getName().isBlank()){
-            throw new HospitalAppException("Department name is required");
-        }
-
-        if (departmentRepository.existsByName(request.getName())){
-            throw new HospitalAppException("Department Already exists");
-        }
-
-        Department department = Mapper.mapToDepartment(request);
-
-        department = departmentRepository.save(department);
-
-        return Mapper.mapToDepartmentRegistrationResponse(department);
-    }
 
     @Override
     public List<Department> getAllDepartments(){
