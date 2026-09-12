@@ -1,8 +1,6 @@
 package com.hospitalAppointmentSystem.services;
 
 import com.hospitalAppointmentSystem.data.models.Department;
-import com.hospitalAppointmentSystem.dtos.requests.DepartmentRegisterRequest;
-import com.hospitalAppointmentSystem.dtos.responses.DepartmentRegistrationResponse;
 import com.hospitalAppointmentSystem.exceptions.HospitalAppException;
 
 import java.util.List;

@@ -29,16 +29,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department getDepartmentByName(String name) throws HospitalAppException{
-        return departmentRepository.findByName(name).
-                orElseThrow(() -> new HospitalAppException("Department not found"));
+        return departmentRepository.findByName(name).orElseThrow(()
+                -> new HospitalAppException("Department not found"));
     }
 
     @Override
-    public Department getDepartmentById(Long id)
-        throws HospitalAppException{
-        return departmentRepository.findById(id)
-                .orElseThrow(() ->
-                        new HospitalAppException("Department not found"));
+    public Department getDepartmentById(Long id) throws HospitalAppException{
+        return departmentRepository.findById(id).orElseThrow(() ->
+                new HospitalAppException("Department not found"));
     }
 
 

@@ -26,17 +26,17 @@ public class Validator {
     public static void validatePatientField(String value, String fieldName)
             throws HospitalAppException{
         if (value == null || value.isBlank())
-            throw new HospitalAppException("Invalid" + fieldName);
+            throw new HospitalAppException("Invalid " + fieldName);
     }
     public static void validatePatientField(List<String> value, String fieldName)
             throws HospitalAppException{
         if (value == null || value.isEmpty())
-            throw new HospitalAppException("Invalid" + fieldName);
+            throw new HospitalAppException("Invalid " + fieldName);
     }
 
     public static void validatePatientField(int value, String fieldName)
             throws HospitalAppException{
-        if (value <= 0) throw new HospitalAppException("Invalid" + fieldName);
+        if (value <= 0) throw new HospitalAppException("Invalid " + fieldName);
     }
 
 

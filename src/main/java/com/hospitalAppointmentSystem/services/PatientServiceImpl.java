@@ -33,4 +33,6 @@ public class PatientServiceImpl implements PatientService {
         return Mapper.mapToPatientRegistrationResponse(patient);
     }
 
+
+
 }
