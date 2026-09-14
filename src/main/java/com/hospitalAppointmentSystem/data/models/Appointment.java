@@ -52,9 +52,17 @@ public class Appointment {
         this.appointmentDatetime = appointmentDatetime;
     }
 
-    public void confirm() { this.status = AppointmentStatus.CONFIRMED; }
-    public void complete() { this.status = AppointmentStatus.COMPLETED; }
-    public void cancel() { this.status = AppointmentStatus.CANCELLED; }
+    public void confirm() {
+        this.status = AppointmentStatus.CONFIRMED;
+    }
+
+    public void complete() {
+        this.status = AppointmentStatus.COMPLETED;
+    }
+
+    public void cancel() {
+        this.status = AppointmentStatus.CANCELLED;
+    }
 }
 
 
