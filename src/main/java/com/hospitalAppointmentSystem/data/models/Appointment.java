@@ -23,6 +23,9 @@ public class Appointment {
     private UUID patientId;
 
     @Column(nullable = false)
+    private String patientName;
+
+    @Column(nullable = false)
     private UUID doctorId;
 
     @Column(nullable = false)
@@ -42,9 +45,10 @@ public class Appointment {
     private AppointmentStatus status = AppointmentStatus.PENDING;
 
 
-    public Appointment(UUID patientId, UUID doctorId, String doctorName, String department,
+    public Appointment(UUID patientId, String patientName, UUID doctorId, String doctorName, String department,
                        String description, LocalDateTime appointmentDatetime) {
         this.patientId = patientId;
+        this.patientName = patientName;
         this.doctorId = doctorId;
         this.doctorName = doctorName;
         this.department = department;
