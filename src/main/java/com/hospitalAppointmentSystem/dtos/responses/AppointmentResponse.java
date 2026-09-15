@@ -8,28 +8,31 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 
 public class AppointmentResponse {
 
-    private UUID appointmentId;
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class BookAppointmentResponse {
 
-    private UUID patientId;
+        private UUID appointmentId;
 
-    private String patientName;
+        private UUID patientId;
 
-    private UUID doctorId;
+        private String patientName;
 
-    private String doctorName;
+        private UUID doctorId;
 
-    private String department;
+        private String doctorName;
 
-    private String description;
+        private String department;
 
-    private LocalDateTime appointmentDatetime;
+        private String description;
 
-    private AppointmentStatus status;
+        private LocalDateTime appointmentDatetime;
+
+        private AppointmentStatus status;
+    }
 
 }

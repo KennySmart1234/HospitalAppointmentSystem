@@ -11,12 +11,13 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 
 public class AppointmentRequest {
 
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class BookAppointmentRequest{
 
         @NotBlank
@@ -29,12 +30,18 @@ public class AppointmentRequest {
         private LocalDateTime appointmentDatetime;
     }
 
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class ChangeAppointmentStatusRequest{
 
         @NotNull
         private AppointmentStatus status;
     }
 
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class AdminBookAppointmentRequest{
 
         @NotNull

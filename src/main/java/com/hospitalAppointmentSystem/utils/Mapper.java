@@ -1,13 +1,11 @@
 package com.hospitalAppointmentSystem.utils;
 
 import com.hospitalAppointmentSystem.data.models.*;
-import com.hospitalAppointmentSystem.dtos.requests.AdminRegistrationRequest;
-import com.hospitalAppointmentSystem.dtos.requests.DepartmentRegisterRequest;
-import com.hospitalAppointmentSystem.dtos.requests.PatientRegistrationRequest;
+import com.hospitalAppointmentSystem.dtos.requests.*;
 import com.hospitalAppointmentSystem.dtos.responses.*;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Mapper {
     public static LoginResponse mapToLoginResponse(User user){
@@ -105,4 +103,51 @@ public class Mapper {
         return response;
 
     }
+
+    public static Appointment mapToAppointment(
+            AppointmentRequest.BookAppointmentRequest request,
+            UUID patientId,
+            String patientName,
+            UUID doctorId,
+            String doctorName) {
+
+        Appointment appointment = new Appointment();
+
+        appointment.setPatientId(patientId);
+        appointment.setPatientName(patientName);
+        appointment.setDoctorId(doctorId);
+        appointment.setDoctorName(doctorName);
+
+        appointment.setDepartment(request.getDepartment());
+        appointment.setDescription(request.getDescription());
+        appointment.setAppointmentDatetime(
+                request.getAppointmentDatetime()
+        );
+
+        appointment.setStatus(AppointmentStatus.PENDING);
+
+        return appointment;
+    }
+
+
+    public static AppointmentResponse.BookAppointmentResponse mapToBookAppointmentResponse(Appointment appointment) {
+
+        AppointmentResponse.BookAppointmentResponse response =
+                new AppointmentResponse.BookAppointmentResponse();
+
+        response.setAppointmentId(appointment.getAppointmentId());
+        response.setPatientId(appointment.getPatientId());
+        response.setPatientName(appointment.getPatientName());
+        response.setDoctorId(appointment.getDoctorId());
+        response.setDoctorName(appointment.getDoctorName());
+        response.setDepartment(appointment.getDepartment());
+        response.setDescription(appointment.getDescription());
+        response.setAppointmentDatetime(
+                appointment.getAppointmentDatetime()
+        );
+        response.setStatus(appointment.getStatus());
+
+        return response;
+    }
 }
+
