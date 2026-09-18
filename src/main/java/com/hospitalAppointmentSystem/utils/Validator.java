@@ -1,6 +1,7 @@
 package com.hospitalAppointmentSystem.utils;
 
 import com.hospitalAppointmentSystem.dtos.requests.AdminRegistrationRequest;
+import com.hospitalAppointmentSystem.dtos.requests.DoctorRegistrationRequest;
 import com.hospitalAppointmentSystem.dtos.requests.PatientRegistrationRequest;
 import com.hospitalAppointmentSystem.exceptions.HospitalAppException;
 
@@ -59,5 +60,22 @@ public class Validator {
             throw new HospitalAppException("Invalid " + fieldName);
     }
 
+    public static void validateDoctor(DoctorRegistrationRequest request)
+            throws HospitalAppException {
+        if (request == null) throw new HospitalAppException("Field cannot be empty");
+
+        validateDoctorField(request.getFullName(), "Fullname");
+        validateDoctorField(request.getEmail(), "email");
+        validateDoctorField(request.getPhone(), "Phone");
+        validateDoctorField(request.getPassword(), "password");
+        validateDoctorField(request.getSpecialization(), "Specialization");
     }
+
+    private static void validateDoctorField(String value, String fieldName)
+            throws HospitalAppException {
+        if(value == null || value.isEmpty())
+            throw new HospitalAppException("Invalid " + fieldName);
+    }
+
+}
 
