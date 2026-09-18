@@ -9,5 +9,5 @@ public class PatientAppointmentRequest {
     private String departmentName;
     private LocalDateTime appointmentDateTime;
     private String description;
-    //check
+
 }
