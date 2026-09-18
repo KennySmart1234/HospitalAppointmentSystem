@@ -51,6 +51,8 @@ public class PatientServiceImplTest {
         patient.setPhone("123456789");
         patient.setLoggedIn(false);
 
+        patientRepository.getById()
+
 
         when(patientRepository.save(any(Patient.class))).thenReturn(patient);
 

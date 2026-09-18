@@ -238,15 +238,12 @@ public class AdminServiceImplTest {
     public void createDepartment_withValidDetails_createsSuccessfully_test() throws HospitalAppException {
 
         DepartmentRegisterRequest request = new DepartmentRegisterRequest();
-
         request.setName("Cardiology");
         when(departmentRepository.existsByName(request.getName())).thenReturn(false);
 
         Department department = new Department();
         department.setName("Cardiology");
-
         when(departmentRepository.save(any(Department.class))).thenReturn(department);
-
         DepartmentRegistrationResponse response = adminService.createDepartment(request);
 
         assertNotNull(response);
@@ -254,13 +251,11 @@ public class AdminServiceImplTest {
         verify(departmentRepository).save(any(Department.class));
     }
 
-
     @Test
     public void createDepartment_withNullRequest_throwsException_test() throws HospitalAppException {
 
         HospitalAppException exception = assertThrows(HospitalAppException.class,
                 () -> adminService.createDepartment(null));
-
         assertEquals("Department cannot be null", exception.getMessage());
 
         verify(departmentRepository, never()).existsByName(anyString());
